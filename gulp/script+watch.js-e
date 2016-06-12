@@ -1,0 +1,38 @@
+'use strict';
+/**
+ * Scripts task.
+ */
+
+const gulp    = require('gulp'),
+      config  = minigulp.config,
+      $       = minigulp.plugins,
+      conf    = require('../webpack.config.js'),
+      through = require('through2'),
+      path    = require('path');
+
+const generateScriptTask = (conf, watch) => {
+  if(watch === true) {
+    conf.watch = true;
+  } else {
+    conf.watch = false;
+  }
+  return gulp.src(minigulp.getPath('js'))
+    .pipe(through.obj(function(file, charset, callback) {
+      const fileName = path.basename(file.path, path.extname(file.path));
+      conf.entry = conf.entry || {};
+      conf.entry[fileName] = file.path;
+      this.push(file);
+      callback();
+    }))
+    .pipe($.webpack(conf))
+    .pipe($.if(minigulp.option.min, $.uglify()))
+    .pipe(gulp.dest(minigulp.getPath('js', 'dest')))
+    .pipe($.browser.reload({stream: true}));
+};
+
+gulp.task('script', () => {
+  return generateScriptTask(conf);
+});
+gulp.task('script:watch', () => {
+  return generateScriptTask(conf, true);
+});

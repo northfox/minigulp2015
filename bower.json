@@ -1,0 +1,20 @@
+{
+  "name": "minigulp2015",
+  "main": "gulp-config.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/northfox/minigulp2015",
+  "authors": [
+    "northfox"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+      
+  }
+}
