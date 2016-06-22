@@ -89,6 +89,7 @@ gulp.task('jade&html', ['jade'], (callback) => {
     'html',
     callback);
 });
+
 gulp.task('watch', () => {
   gulp.watch(getPath('sass'), ['style']);
   gulp.watch(getPath('jade', 'watch'), ['jade&html']);

@@ -10,17 +10,15 @@ const gulp   = require('gulp'),
 
 gulp.task('style', () => {
   if(minigulp2015.option.dev) {
-    config.sass.options.sourceMap = true;
-    config.sass.options.style = 'expanded';
+    config.style.sass.options.sourceMap = true;
+    config.style.sass.options.style = 'expanded';
   }
 
   return gulp.src(minigulp2015.getPath('sass'))
     .pipe($.plumber({errorHandler: $.notify.onError('<%= error.message %>')}))
-    .pipe($.sass(config.sass.options))
-    .pipe($.autoprefixer(config.autoprefixer.browser))
-    .pipe($.if(minigulp2015.option.min, $.csso()))
-    .pipe($.if(minigulp2015.option.min, $.csscomb()))
-    .pipe($.if(minigulp2015.option.min, $.cssmin()))
+    .pipe($.sass(config.style.sass.options))
+    .pipe($.autoprefixer(config.style.autoprefixer.browsers))
+    .pipe($.if(minigulp2015.option.min, $.cssnano()))
     .pipe(gulp.dest(minigulp2015.getPath('sass', 'dest')))
     .pipe($.size({title: 'style'}))
     .pipe($.browser.reload({stream: true}));

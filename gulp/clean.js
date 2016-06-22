@@ -8,4 +8,5 @@ const gulp   = require('gulp'),
 
 gulp.task('clean', (callback) => {
   del([minigulp2015.getPath('jade', 'dest')], callback);
+  callback();
 });

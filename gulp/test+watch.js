@@ -8,18 +8,19 @@ const gulp   = require('gulp'),
       Server = require('karma').Server,
       CONFFILE = process.cwd() + '/karma.conf.js';
 
-const generateTestTask = (watch) => {
+const generateTestTask = (watch, callback) => {
   const server = new Server({
     configFile: CONFFILE,
-    singleRun: true,
     autoWatch: watch ? true : false
   });
+  
+  if(callback) server.start(callback);
 };
 
-gulp.task('test', () => {
-  return generateTestTask(false);
+gulp.task('test', (callback) => {
+  return generateTestTask(false, callback);
 });
 gulp.task('test:watch', () => {
-  return generateTestTask(true);
+  return generateTestTask(true, null);
 });
 

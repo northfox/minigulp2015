@@ -48,14 +48,7 @@ module.exports = {
 
   // Karma
   karma: {
-    conf: 'karma.conf.js',
-    junitReporter : {
-      outputFile: 'results/unit-tests/jstest-results.xml'
-    },
-    coverageReporter : {
-      type : 'html',
-      dir : 'results/js-coverage/'
-    }
+    conf: 'karma.conf.js'
   },
 
   // Nightwatch
@@ -101,10 +94,8 @@ module.exports = {
     },
     test: {
       src: [
-        'dist/js/common.js',
-        'dist/js/app.js',
-        'src/**/*Spec.js',
-        '!src/lib/**/*'
+        'dist/js/*.js',
+        'src/js/test/*.js'
       ]
     },
     copy: {

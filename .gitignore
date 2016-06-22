@@ -7,11 +7,13 @@
 .secret
 .sass-cache
 
-# minigulp
+# minigulp2015
 README.html
 .idea
 .sass-cache
 node_modules
 bower_components
 lib
-public
+public/
+coverage/
+dist/
