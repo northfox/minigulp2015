@@ -11,10 +11,15 @@ const gulp   = require('gulp'),
 const generateTestTask = (watch, callback) => {
   const server = new Server({
     configFile: CONFFILE,
+    singleRun: watch ? false : true,
     autoWatch: watch ? true : false
   });
-  
-  if(callback) server.start(callback);
+
+  if(callback) {
+    server.start(callback);
+  } else {
+    server.start();
+  }
 };
 
 gulp.task('test', (callback) => {
@@ -23,4 +28,3 @@ gulp.task('test', (callback) => {
 gulp.task('test:watch', () => {
   return generateTestTask(true, null);
 });
-
