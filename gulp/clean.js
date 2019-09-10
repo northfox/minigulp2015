@@ -3,10 +3,10 @@
  * Clean task.
  */
 
-const gulp   = require('gulp'),
-      del    = require('del');
+const gulp = require('gulp'),
+  del = require('del');
 
-gulp.task('clean', (callback) => {
-  del([minigulp2015.getPath('jade', 'dest')], callback);
+gulp.task('clean', callback => {
+  del([minigulp.getPath('jade', 'dest')], callback);
   callback();
 });

@@ -1,43 +1,43 @@
 'use strict';
 
 /**
- * minigulp2015
+ * minigulp
  * @param -dev has minify stop
  */
 
 /**
  * prepare
  */
-const gulp        = require('gulp'),
-      config      = require('./config'),
-      $           = require('gulp-load-plugins')({
-                      pattern: ['gulp-*', 'gulp.*'],
-                      replaceString: /\bgulp[\-.]/
-      });
-$.browser         = require('browser-sync');
+const gulp = require('gulp'),
+  config = require('./config'),
+  $ = require('gulp-load-plugins')({
+    pattern: ['gulp-*', 'gulp.*'],
+    replaceString: /\bgulp(-|\.)/,
+  });
+$.browser = require('browser-sync');
 const runSequence = require('run-sequence'),
-      extend      = require('extend'),
-      pkg         = require('./package.json');
+  extend = require('extend'),
+  pkg = require('./package.json');
 const DEFAULT_OPTIONS = {
-  min : true,
-  dev : false,
-  port: 3000
+  min: true,
+  dev: false,
+  port: 3000,
 };
 const OPTIONS = parseOption(process.argv);
 if (OPTIONS.dev) {
   OPTIONS.min = false;
 }
-console.log("current options: ");
+console.log('current options: ');
 console.dir(OPTIONS);
 
 function parseOption(argv) {
   const options = extend({}, DEFAULT_OPTIONS);
   let i, match, key, value;
-  for(i = 0; i < argv.length; i++) {
+  for (i = 0; i < argv.length; i++) {
     if (argv[i].charAt(0) === '-') {
-      match        = argv[i].substring(1).split('=');
-      key          = match[0];
-      value        = match[1] || true;
+      match = argv[i].substring(1).split('=');
+      key = match[0];
+      value = match[1] || true;
       options[key] = value;
     }
   }
@@ -60,12 +60,12 @@ function getPath(name, prop) {
 }
 
 // set global
-global.minigulp2015 = {
-  plugins : $,
-  config  : config,
-  getPath : getPath,
-  option  : OPTIONS,
-  pkg     : pkg
+global.minigulp = {
+  plugins: $,
+  config: config,
+  getPath: getPath,
+  option: OPTIONS,
+  pkg: pkg,
 };
 
 // load task from gulp's load
@@ -73,21 +73,24 @@ require('./gulp/_load');
 
 // tasks
 gulp.task('e2e', ['default', 'webtest'], () => {});
-gulp.task('default', ['server', 'watch', 'script:watch', 'test:watch'], () => {});
+gulp.task(
+  'default',
+  ['server', 'watch', 'script:watch', 'test:watch'],
+  () => {}
+);
 
-gulp.task('init', ['clean'], (callback) => {
+gulp.task('init', ['clean'], callback => {
   return runSequence(
     ['copy', 'jade', 'style'],
     'script',
     'imagemin',
     'html',
-    callback);
+    callback
+  );
 });
 
-gulp.task('jade&html', ['jade'], (callback) => {
-  return runSequence(
-    'html',
-    callback);
+gulp.task('jade&html', ['jade'], callback => {
+  return runSequence('html', callback);
 });
 
 gulp.task('watch', () => {

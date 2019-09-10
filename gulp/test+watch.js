@@ -3,26 +3,25 @@
  * Unit test task.
  */
 
-const gulp   = require('gulp'),
-      config = minigulp2015.config,
-      Server = require('karma').Server,
-      CONFFILE = process.cwd() + '/karma.conf.js';
+const gulp = require('gulp'),
+  Server = require('karma').Server,
+  CONFFILE = process.cwd() + '/karma.conf.js';
 
 const generateTestTask = (watch, callback) => {
   const server = new Server({
     configFile: CONFFILE,
     singleRun: watch ? false : true,
-    autoWatch: watch ? true : false
+    autoWatch: watch ? true : false,
   });
 
-  if(callback) {
+  if (callback) {
     server.start(callback);
   } else {
     server.start();
   }
 };
 
-gulp.task('test', (callback) => {
+gulp.task('test', callback => {
   return generateTestTask(false, callback);
 });
 gulp.task('test:watch', () => {

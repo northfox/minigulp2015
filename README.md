@@ -1,4 +1,4 @@
-# minigulp2015
+# minigulp
 
 gulp environment for simple services
 
