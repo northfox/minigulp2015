@@ -7,6 +7,6 @@ const gulp = require('gulp'),
   del = require('del');
 
 gulp.task('clean', callback => {
-  del([minigulp.getPath('jade', 'dest')], callback);
+  del([minigulp.getPath('pug', 'dest')], callback);
   callback();
 });

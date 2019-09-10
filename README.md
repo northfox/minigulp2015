@@ -49,7 +49,6 @@ gulp environment for simple services
 - [gulp-htmlhint](https://www.npmjs.org/package/gulp-htmlhint)
 - [gulp-if](https://www.npmjs.org/package/gulp-if)
 - [gulp-imagemin](https://www.npmjs.org/package/gulp-imagemin)
-- [gulp-jade](https://www.npmjs.com/package/gulp-jade)
 - [gulp-karma](https://www.npmjs.org/package/gulp-karma)
 - [gulp-load-plugins](https://www.npmjs.org/package/gulp-load-plugins)
 - [gulp-notify](https://www.npmjs.org/package/gulp-notify)

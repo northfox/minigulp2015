@@ -81,7 +81,7 @@ gulp.task(
 
 gulp.task('init', ['clean'], callback => {
   return runSequence(
-    ['copy', 'jade', 'style'],
+    ['copy', 'pug', 'style'],
     'script',
     'imagemin',
     'html',
@@ -89,12 +89,12 @@ gulp.task('init', ['clean'], callback => {
   );
 });
 
-gulp.task('jade&html', ['jade'], callback => {
+gulp.task('pug&html', ['pug'], callback => {
   return runSequence('html', callback);
 });
 
 gulp.task('watch', () => {
   gulp.watch(getPath('sass'), ['style']);
-  gulp.watch(getPath('jade', 'watch'), ['jade&html']);
+  gulp.watch(getPath('pug', 'watch'), ['pug&html']);
   gulp.watch(getPath('images'), ['imagemin']);
 });
