@@ -72,7 +72,6 @@ global.minigulp = {
 require('./gulp/_load');
 
 // tasks
-gulp.task('e2e', ['default', 'webtest'], () => {});
 gulp.task(
   'default',
   ['server', 'watch', 'script:watch', 'test:watch'],
@@ -80,21 +79,10 @@ gulp.task(
 );
 
 gulp.task('init', ['clean'], callback => {
-  return runSequence(
-    ['copy', 'pug', 'style'],
-    'script',
-    'imagemin',
-    'html',
-    callback
-  );
-});
-
-gulp.task('pug&html', ['pug'], callback => {
-  return runSequence('html', callback);
+  return runSequence(['pug', 'style'], 'script', callback);
 });
 
 gulp.task('watch', () => {
   gulp.watch(getPath('sass'), ['style']);
-  gulp.watch(getPath('pug', 'watch'), ['pug&html']);
-  gulp.watch(getPath('images'), ['imagemin']);
+  gulp.watch(getPath('pug', 'watch'), ['pug']);
 });
